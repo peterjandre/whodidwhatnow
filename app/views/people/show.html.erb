@@ -1,0 +1,29 @@
+<div class="container">
+  
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h2>What is...</h2>
+      <h1><%= @person.full_name %></h1>
+      <h2>known for?</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-condensed table-bordered">
+        <thead>
+        </thead>
+        <tbody>
+          <tr>
+            <% @bios.each do |bio| %>
+              <td>
+                <%= bio.text %>
+              </td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
