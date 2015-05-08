@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Write a Fake Bio for...</h1>
+      <h2><%= @person.full_name %></h2>
+    </div>
+
+    <div class="col-md-8">
+      <%= form_for [@person, @bio], :html => { :multipart => true } do |f| %>
+      <div class="form-group">  
+        <%= f.label "Fake Bio" %>
+        <%= f.text_field :text, class: "form-control" %>
+        <span id="helpBlock" class="help-block">Write your bio in the form of a complete sentence.</span>
+      </div>
+
+        <%= f.submit class: "btn btn-default btn-primary" %>
+
+    <% end %>
+    </div>
+
+  </div>
+</div>

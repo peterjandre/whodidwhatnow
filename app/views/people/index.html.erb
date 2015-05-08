@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Write Fake Bios!</h1>
+      <h3>All these people need fake bios written for them so they can be entered into the game. Select a person you would like to write a fake bio for.</h3>
+    </div>
+
+    <div class="col-md-6">
+        <% @people.each do |person| %>
+          <% if person.bios.count == 5 %>
+            <% nil %>
+          <% else %>
+              <%= link_to person.full_name, new_person_bio_path(person), class: "btn btn-primary" %>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+
+  </div>
+</div>

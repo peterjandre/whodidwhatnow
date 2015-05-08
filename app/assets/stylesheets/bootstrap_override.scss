@@ -2,13 +2,34 @@
 @import "bootstrap";
 
 body {
-  background-color: #555555;
+  background-color: #abcabc;
+  font-family: "Rokkitt", serif;
 }
 
 h1 {
   color: #eeeeee;
+  font-family: "Questrial", sans-serif;
+  font-size: 400%;
+}
+
+nav {
+  font-size: 150%;
 }
 
 ul.navbar-right {
   padding-top: 14px;
 }
+
+td {
+  font-size: 140%;
+}
+
+.btn {
+    white-space: normal !important;
+    word-wrap: break-word; 
+    font-size: 125%;
+}
+
+.table th, .table td { 
+     border-top: none !important; 
+ }
