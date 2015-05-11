@@ -19,7 +19,8 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <% if current_user %>  
+        <% if current_user %> 
+          <span><%= current_user.score %> of <%= current_user.attempts %> correct | </span> 
           <span class="user-email"><%= current_user.email %></span> | 
           <%= link_to "LOGOUT", destroy_user_session_path, method: :delete %>
         <% else %>

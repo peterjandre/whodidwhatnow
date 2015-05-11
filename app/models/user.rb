@@ -8,4 +8,7 @@ class User < ActiveRecord::Base
 
   validates :password, presence: true, on: :create
   validates :password_confirmation, presence: true
+
+  has_many :questions
+
 end

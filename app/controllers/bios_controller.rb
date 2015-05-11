@@ -3,15 +3,12 @@ class BiosController < ApplicationController
 
   def new
     @bio = Bio.new
-    # @person = Person.find_by_id(params[:person_id])
   end
 
   def create
-    binding.pry
-    # @bio = Bio.new(bio_params)
-     @bio = @person.bios.build(bio_params)
-     binding.pry
-     
+    @bio = @person.bios.build(bio_params)
+    
+    binding.pry 
     if @bio.save
       flash[:notice] = "Your bio was successfully added."
       redirect_to people_path

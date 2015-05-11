@@ -9,30 +9,12 @@
   </div>
 
   <div class="row">
-    <div class="col-md-12">
-      <table class="table">
-        <thead>
-        </thead>
-        <tbody>
-          <tr>
-            <% @bios.each do |bio| %>
-              <td>
-                <button class="btn btn-primary">
-                <div id="
-                  <% if bio.real? %>
-                    <%= 'correct' %>
-                  <% else %>
-                    <%= 'incorrect' %>
-                  <% end %>
-                ">
-                <%= bio.text %>
-                </div>
-              </button>
-              </td>
-            <% end %>
-          </tr>
-        </tbody>
-      </table>
+    <div class="col=md-12">
+      <%= form_tag(:choice), remote: true do %>
+        <% @bios.each do |bio| %>
+          <%= submit_tag bio.text, class: "btn btn-primary btn-block" %>
+        <% end %>
+      <% end %>
     </div>
   </div>
 

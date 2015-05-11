@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   resources :people, only: [:show, :index] do
     resources :bios, only: [:new, :create]
   end
-
+  resources :users, only: [:show, :index] do
+    resources :questions, only: [:show, :edit, :update]
+  end
 
   root 'home#show'
 

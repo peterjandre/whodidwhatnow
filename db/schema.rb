@@ -11,21 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150507234910) do
+ActiveRecord::Schema.define(version: 20150511124347) do
 
   create_table "bios", force: :cascade do |t|
     t.string   "text"
-    t.boolean  "real"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "real",       default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.integer  "person_id"
+  end
+
+  create_table "choices", force: :cascade do |t|
     t.integer  "user_id"
+    t.integer  "bio_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "question_id"
   end
 
   create_table "people", force: :cascade do |t|
     t.string   "full_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "link"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "person_id"
+    t.integer  "bio_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -41,6 +57,8 @@ ActiveRecord::Schema.define(version: 20150507234910) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.integer  "score",                  default: 0
+    t.integer  "attempts",               default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

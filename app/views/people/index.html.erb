@@ -2,15 +2,23 @@
   <div class="row">
     <div class="col-md-12">
       <h1>Write Fake Bios!</h1>
-      <h3>All these people need fake bios written for them so they can be entered into the game. Select a person you would like to write a fake bio for.</h3>
+      <h3>Every person needs 4 fake bios before they can be entered into the game. Select a person to write a fake bio for.</h3>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-12">
         <% @people.each do |person| %>
           <% if person.bios.count == 5 %>
             <% nil %>
           <% else %>
-              <%= link_to person.full_name, new_person_bio_path(person), class: "btn btn-primary" %>
+            <div class="col-md-4">
+              <%= link_to(new_person_bio_path(person), class: "btn btn-primary btn-block") do %>
+                <%= person.full_name %>
+                <span class="badge">
+                  <%= person.bios.count - 1 %>
+                  <%= person.bios.count - 1 == 1 ? "Fake Bio" : "Fake Bios" %>
+                </span>
+              <% end %>
+            </div>  
           <% end %>
         <% end %>
       </ul>
