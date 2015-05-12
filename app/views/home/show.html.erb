@@ -3,6 +3,7 @@
     <div class="col-md-12">
       <h1 class="text-center">WHO DID WHAT NOW?<h1>
       <h3 class="text-center">It's a fun game where you have to pick the one correct biography from several fakes.</h3>
+      <h3 class="text-center">You must be signed in to play the game.</h3>
     </div>
   </div>
   <div class="row">
@@ -12,5 +13,10 @@
     <div class="col-md-6">
       <%= link_to "LOGIN", new_user_session_path, class: "btn btn-block btn-primary home-button" %>
     </div>
+  <div class="row">
+    <div class="col-md-12">
+      <%= link_to "PLAY GAME", next_person, class: "btn btn-block btn-primary home-button" %>
+    </div>
+  </div>
   </div>
 </div>

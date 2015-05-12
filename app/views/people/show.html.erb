@@ -4,17 +4,23 @@
     <div class="col-md-12 text-center">
       <h2>What is...</h2>
       <h1><%= @person.full_name %></h1>
+      <h3 class="hidden answer"><%= @real_bio.pluck(:text)[0] %></h2>
       <h2>known for?</h2>
     </div>
   </div>
 
   <div class="row">
-    <div class="col=md-12">
-      <%= form_tag(:choice), remote: true do %>
-        <% @bios.each do |bio| %>
-          <%= submit_tag bio.text, class: "btn btn-primary btn-block" %>
-        <% end %>
+    <div class="col-md-12">
+      <%= form_for [@user, @question], :html => { :multipart => true }, remote: true do |f| %>
+          <%= f.collection_radio_buttons(:bio_id, @person.bios.sample(5), :id, :text, {prompt: true}) %>
+        <%= f.submit "Submit Answer", class: "btn btn-primary btn-block" %>
       <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <%= link_to "MOVE TO NEXT PERSON", next_person, class: "hidden btn btn-primary btn-block" %>
     </div>
   </div>
 

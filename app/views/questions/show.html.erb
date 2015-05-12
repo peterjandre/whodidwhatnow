@@ -10,11 +10,17 @@
   </div>
 
   <div class="row">
-    <div class="col=md-12">
+    <div class="col-md-12">
       <%= form_for [@user, @question], :html => { :multipart => true }, remote: true do |f| %>
           <%= f.collection_radio_buttons(:bio_id, @person.bios.sample(5), :id, :text, {prompt: true}) %>
-        <%= f.submit "Submit Answer" %>
+        <%= f.submit "Submit Answer", class: "btn btn-primary btn-block" %>
       <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <%= link_to "MOVE TO NEXT PERSON", next_person, class: "hidden btn btn-primary btn-block" %>
     </div>
   </div>
 

@@ -19,20 +19,20 @@ class QuestionsController < ApplicationController
     @bio = Bio.find_by_id(params[:question].fetch("bio_id"))
     @question.update_attributes(question_params)
 
+    @user = current_user
+
+    if @bio.real?
+      add_score = @user.score += 1
+      add_attempt = @user.attempts += 1
+    else
+      add_attempt
+    end
+    @user.update_attributes(score: add_score, attempts: add_attempt)
+
     respond_to do |format|
       format.html
       format.js
     end
-
-    if @bio.real?
-      flash[:notice] = "CORRECT!"
-      @user.score += 1
-      @user.attempts += 1
-    else
-      flash[:alert] = "Incorrect."
-      @user.attempts += 1
-    end
-    @user.save
 
   end
 
