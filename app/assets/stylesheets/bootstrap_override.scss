@@ -6,6 +6,18 @@ body {
   font-family: "Rokkitt", serif;
 }
 
+#js-msg {
+  display: none;
+  font-size: 200%;
+}
+
+.radio_buttons {
+
+  label {
+    font-size: 150%;
+  }
+}
+
 h1 {
   color: #eeeeee;
   font-family: "Questrial", sans-serif;
@@ -24,10 +36,6 @@ ul.navbar-right {
   padding-top: 11px;
 }
 
-td {
-  font-size: 140%;
-}
-
 .btn {
     white-space: normal !important;
     word-wrap: break-word; 
@@ -39,7 +47,3 @@ td {
   font-weight: bolder;
   font-family: "Questrial", sans-serif;
 }
-
-.table th, .table td { 
-     border-top: none !important; 
- }

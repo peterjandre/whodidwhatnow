@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   validates :password, presence: true, on: :create
   validates :password_confirmation, presence: true
 
-  has_many :questions
+  has_many :answers
+  has_many :people, through: :answers
 
 end

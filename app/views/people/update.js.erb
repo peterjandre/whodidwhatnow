@@ -1,0 +1,21 @@
+$(document).ready(function() {
+
+  <% if @bio.real? %>
+    $("#js-msg").addClass("alert-success");
+    $(".right-wrong").html("CORRECT!");
+  <% else %>
+    $("#js-msg").addClass("alert-danger");
+    $(".right-wrong").html("Incorrect.");
+  <% end %>
+
+  $("#js-msg").show();
+
+  $("h2").hide();
+
+  $("form").hide();
+
+  $("h3").removeClass("hidden");
+
+  $("a.btn").removeClass("hidden");
+
+})

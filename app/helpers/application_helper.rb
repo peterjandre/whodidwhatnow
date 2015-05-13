@@ -1,23 +1,19 @@
 module ApplicationHelper
 
   def random_person
-    Person.find(Person.pluck(:id).sample)
-  end
-
-  def next_person
     if current_user.present?
-      @user_id = current_user.id
-      @unanswered_question = Question.where(bio_id: nil, user_id: @user_id)
-      @unanswered_question_id = @unanswered_question.pluck(:id)
-
-      if @unanswered_question.present?
-        "/users/#{@user_id}/questions/#{@unanswered_question_id[0]}"
-      else
-        flash[:alert] = "There are no more questions available to you."
+      @played_people = current_user.answers.pluck(:person_id)
+      @game_people = Person.ready_for_game.pluck(:id)
+      @available_people = @game_people - @played_people
+      if @available_people.empty?
+        flash[:alert] = "You have played all the current people. Check back soon."
         root_path
+      else
+        @id = @available_people.sample
+        Person.find_by_id(@id)
       end
     else
-      return false
+      root_path
     end
   end
 

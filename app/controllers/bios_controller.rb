@@ -1,4 +1,5 @@
 class BiosController < ApplicationController
+  
   before_action :find_person, only: [:new, :create]
 
   def new
@@ -8,8 +9,8 @@ class BiosController < ApplicationController
   def create
     @bio = @person.bios.build(bio_params)
     
-    binding.pry 
     if @bio.save
+      Person.increment_counter(:bio_count, @person.id)
       flash[:notice] = "Your bio was successfully added."
       redirect_to people_path
     else

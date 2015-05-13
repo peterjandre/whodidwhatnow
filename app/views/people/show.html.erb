@@ -11,8 +11,13 @@
 
   <div class="row">
     <div class="col-md-12">
-      <%= form_for [@user, @question], :html => { :multipart => true }, remote: true do |f| %>
-          <%= f.collection_radio_buttons(:bio_id, @person.bios.sample(5), :id, :text, {prompt: true}) %>
+      <%= simple_form_for @person, :html => { :multipart => true }, remote: true do |f| %>
+        <%= f.association :bios, collection: @bios, label_method: :text, as: :radio_buttons, :input_html => {
+        :value => :bio_id,
+        :name => "person[bio_id]"
+      } %>
+        <%= f.hidden_field :person_id, :value => @person.id %>
+        <%= f.hidden_field :user_id, :value => @user.id %>
         <%= f.submit "Submit Answer", class: "btn btn-primary btn-block" %>
       <% end %>
     </div>
@@ -20,7 +25,7 @@
 
   <div class="row">
     <div class="col-md-12">
-      <%= link_to "MOVE TO NEXT PERSON", next_person, class: "hidden btn btn-primary btn-block" %>
+      <%= link_to "MOVE TO NEXT PERSON", random_person, class: "hidden btn btn-primary btn-block" %>
     </div>
   </div>
 

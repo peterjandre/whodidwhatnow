@@ -1,14 +1,34 @@
 class PeopleController < ApplicationController
-  before_action :find_user, only: [:show, :index]
+  
+  before_action :authenticate_user!
+  before_action :find_user, only: [:show, :index, :update]
 
   def show
     @person = Person.find_by_id(params[:id])
     @bios = @person.bios.sample(5)
+    @real_bio = @person.bios.where("real" => true)
+    @answer = Answer.new
+
+  end
+
+  def update
+    @p = params[:person]
+    @bio = Bio.find_by_id(@p[:bio_id])
+    @person = Person.find_by_id(params[:id])
+    @person.answers.create(answer_params)
+
+    if @bio.real?
+      User.increment_counter(:score, @user.id)
+      User.increment_counter(:attempts, @user.id)
+    else
+      User.increment_counter(:attempts, @user.id)
+    end 
 
     respond_to do |format|
       format.html 
-      format.js
+      format.js {}
     end
+
   end
 
   def index
@@ -17,8 +37,8 @@ class PeopleController < ApplicationController
 
   private
 
-  def choice_params
-    params.require(:choice).permit(:user_id, :bio_id)
+  def answer_params
+    params.require(:person).permit(:bio_id, :user_id, :person_id)
   end
 
   def find_user

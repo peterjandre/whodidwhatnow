@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150511124347) do
+ActiveRecord::Schema.define(version: 20150512230658) do
+
+  create_table "answers", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "person_id"
+    t.integer  "bio_id"
+  end
 
   create_table "bios", force: :cascade do |t|
     t.string   "text"
@@ -21,27 +29,12 @@ ActiveRecord::Schema.define(version: 20150511124347) do
     t.integer  "person_id"
   end
 
-  create_table "choices", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "bio_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "question_id"
-  end
-
   create_table "people", force: :cascade do |t|
     t.string   "full_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.string   "link"
-  end
-
-  create_table "questions", force: :cascade do |t|
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "person_id"
-    t.integer  "bio_id"
+    t.integer  "bio_count",  default: 1
   end
 
   create_table "users", force: :cascade do |t|
