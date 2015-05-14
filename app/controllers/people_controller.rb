@@ -1,6 +1,6 @@
 class PeopleController < ApplicationController
   
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index]
   before_action :find_user, only: [:show, :index, :update]
 
   def show

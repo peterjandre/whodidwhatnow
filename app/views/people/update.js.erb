@@ -10,6 +10,8 @@ $(document).ready(function() {
 
   $("#js-msg").show();
 
+  $("#next-person-link").append("<div><%= escape_javascript(link_to "MOVE TO NEXT PERSON", random_person, class: "hidden btn btn-primary btn-block") %></div>");
+
   $("h2").hide();
 
   $("form").hide();
